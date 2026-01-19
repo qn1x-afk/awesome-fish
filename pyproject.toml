@@ -1,0 +1,9 @@
+[project]
+name = "awesome-fish"
+version = "0.0.1"
+description = "A file that will never be updated again"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32.5",
+]
