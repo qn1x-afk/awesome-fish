@@ -1,6 +1,6 @@
 import os
 import shutil
-import install_fish
+from .install_fish import fish_install
 
 def install(*args, **kwargs):
     current_directory = os.getcwd()
@@ -16,19 +16,27 @@ def install(*args, **kwargs):
     
     if os.path.exists(f"{fish_config_location}/functions"):
         print("The functions directory exists")
-        items = os.listdir(f"{fish_config_location}/functions")
-        print("Items in the functions directory:")
-        for item in items:
-            print(item)
-
-        shutil.move(awesome_fish_directory, f"{fish_config_location}/functions")
-        print("Awesome Fish has been moved to the functions directory")
+        
+        # Copy contents of awesome-fish directory to functions directory
+        if os.path.exists(awesome_fish_directory):
+            for item in os.listdir(awesome_fish_directory):
+                source_path = os.path.join(awesome_fish_directory, item)
+                dest_path = os.path.join(f"{fish_config_location}/functions", item)
+                
+                if os.path.isdir(source_path):
+                    shutil.copytree(source_path, dest_path, dirs_exist_ok=True)
+                else:
+                    shutil.copy2(source_path, dest_path)
+            
+            print("Awesome Fish contents have been copied to the functions directory")
+        else:
+            print("Awesome Fish directory not found")
 
     else:
         print("Please ensure that the Friendly Interactive Shell is installed.")
         result = input("Do you want to install it? (y/n): ")
         if result == "y":
-            install_fish.fish_install(*args, **kwargs)
+            fish_install(*args, **kwargs)
         else:
             print("Exiting...")
             exit()
