@@ -1,19 +1,9 @@
 [project]
-<<<<<<< HEAD
-name = "awesome-fish"
-version = "0.0.1"
-description = "A file that will never be updated again"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "requests>=2.32.5",
-=======
 name = "fishscriptinstall"
 version = "0.1.0"
-description = "Add your description here"
+description = "A collection of awesome fish scripts"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "python-dotenv>=1.2.1",
->>>>>>> 2c425de (Recreating UV env)
 ]
